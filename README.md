@@ -23,7 +23,8 @@ In View/AppView.php or in your Controller file, call MenuHelper in initialize() 
 
 ## Call menu in layout
 
-    echo $this->Menu->get('main');// optional argument, in case of multiple menus. just echo $this->Menu->get() for default is main.
+    echo $this->Menu->get('main');// optional argument, 
+    //in case of multiple menus. just echo $this->Menu->get() for default is main.
 
 That's it!
 
