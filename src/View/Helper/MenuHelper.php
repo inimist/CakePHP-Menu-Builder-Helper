@@ -28,6 +28,11 @@ class MenuHelper extends Helper
    * @var array
    */
   protected $_defaultConfig = [
+    'options'=>[
+      'class'=>'dropdown menu', 
+      'id'=>'maindmenu', 
+      'data-dropdown-menu'
+    ]
   ];
 
   protected $_menuItems = [];
@@ -43,7 +48,7 @@ class MenuHelper extends Helper
    * @link http://book.cakephp.org/3.0/en/views/helpers/html.html#creating-breadcrumb-trails-with-htmlhelper
    * @deprecated 3.3.6 Use the BreadcrumbsHelper instead
    */
-  public function addMenuItem($name, $link = null, array $options = [], $children = [])
+  public function addItem($name, $link = null, array $options = [], $children = [])
   {
       /*if(isset($options['children']) && sizeof($options['children'])) {
         $children = array_merge($children, $options['children']);
@@ -58,7 +63,7 @@ class MenuHelper extends Helper
       $this->area = $area;
   }
 
-  public function addMenuSubItem($name, $link = null, array $options = [])
+  public function addSubItem($name, $link = null, array $options = [])
   {
       //debug($this->_menuItems);
       //debug($this->_menuItems[$this->area]);
@@ -73,8 +78,10 @@ class MenuHelper extends Helper
   /**
    * Returns the menu as a fully functional menu structure.
    */
-  public function get($area=  'main', array $options = ['class'=>'dropdown menu', 'id'=>'maindmenu', 'data-dropdown-menu'], $startText = false)
+  public function get($area=  'main', array $options = [], $startText = false)
   {
+    $options = array_merge($this->config('options'), $options);
+    //debug($options);
     $this->area = $area;
     $defaults = ['firstClass' => 'first', 'lastClass' => 'last', 'separator' => '', 'escape' => true];
     $options += $defaults;

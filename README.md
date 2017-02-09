@@ -13,45 +13,62 @@ In View/AppView.php or in your Controller file, call MenuHelper in initialize() 
 
 ## Add Links (in view file)
     $this->Menu->init('main'); //optional line. Valid in case of multiple menus. Defines the area of the menu
-    $this->Menu->addMenuItem(__('First Link'), ['action' => 'linkaction', $otherparams]);
-    $this->Menu->addMenuItem(__('Second Link'), ['action' => 'linkaction', $otherparams]);
-    $this->Menu->addMenuSubItem(__('Second Sub Link One'), ['action' => 'linkaction', $otherparams]);
-    $this->Menu->addMenuSubItem(__('Second Sub Link Two'), ['action' => 'linkaction', $otherparams]);
-    $this->Menu->addMenuItem(__('Third Link'), ['action' => 'linkaction', $otherparams]);
-    $this->Menu->addMenuSubItem(__('Third Sub Link One'), ['action' => 'linkaction', $otherparams]);
-    $this->Menu->addMenuSubItem(__('Third Sub Link Two'), ['action' => 'linkaction', $otherparams]);
+    $this->Menu->addItem(__('First Link'), ['action' => 'linkaction', $otherparams]);
+    $this->Menu->addItem(__('Second Link'), ['action' => 'linkaction', $otherparams]);
+    $this->Menu->addSubItem(__('Second Sub Link One'), ['action' => 'linkaction', $otherparams]);
+    $this->Menu->addSubItem(__('Second Sub Link Two'), ['action' => 'linkaction', $otherparams]);
+    $this->Menu->addItem(__('Third Link'), ['action' => 'linkaction', $otherparams]);
+    $this->Menu->addSubItem(__('Third Sub Link One'), ['action' => 'linkaction', $otherparams]);
+    $this->Menu->addSubItem(__('Third Sub Link Two'), ['action' => 'linkaction', $otherparams]);
 
-## Call menu in layout
+## Call menu in your Layout, for example default.ctp
 
-    echo $this->Menu->get('main');// optional argument, 
-    //in case of multiple menus. just echo $this->Menu->get() for default is main.
+    echo $this->Menu->get('main');// optional argument 'main', 
+    //in case of multiple menus. Just echo $this->Menu->get() for default is main.
 
 That's it!
 
-## Advanced options to add multilevel menu
+## Advanced Options
 
-    $this->Menu->addMenuItem(__('View Profile'), ['action' => 'view',$resident->id], [], 
+### Add Multi-level menu in single AddItem call
+
+    $this->Menu->addItem(__('View Profile'), ['action' => 'view',$entity->id], [], 
     [
-        [__('View Profile'), ['action' => 'view',$resident->id]], 
-        [__('View Profile'), ['action' => 'view',$resident->id],
+        [__('View Profile'), ['action' => 'view',$entity->id]], 
+        [__('View Profile'), ['action' => 'view',$entity->id],
         [],
         [
-            [__('View Profile'), ['action' => 'view',$resident->id],
+            [__('View Profile'), ['action' => 'view',$entity->id],
             [],
             [
-                [__('View Profile'), ['action' => 'view',$resident->id]], 
-                [__('View Profile'), ['action' => 'view',$resident->id]]
+                [__('View Profile'), ['action' => 'view',$entity->id]], 
+                [__('View Profile'), ['action' => 'view',$entity->id]]
             ]
 
             ], 
-            [__('View Profile'), ['action' => 'view',$resident->id]]
+            [__('View Profile'), ['action' => 'view',$entity->id]]
         ]
       ]
     ]);
-    
-## Contact me for help at
 
-http://devarticles.in
+Hint: $entity is for example purpose only
+
+### Adding postLink
+
+    <?php $this->Menu->addSubItem(
+      $this->Form->postLink(
+        __('Delete'),
+        ['action' => 'delete', $entity->id],
+        ['confirm' => __('Are you sure you want to delete # {0}?', $entity->id)]
+      ), 
+      '#', 
+      ['escape'=>false]); 
+    ?>//TODO, Technically it is not "correct" but it still works!
+
+
+## Contact me for any support or help through
+
+http://devarticles.in/contact
 or  
-http://inimist.com
+http://inimist.com/contact-us/
 
