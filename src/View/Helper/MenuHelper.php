@@ -115,7 +115,11 @@ class MenuHelper extends Helper
           if (empty($menuItem[1])) {
               $elementContent = $menuItem[0];
           } else {
+            if(stripos($menuItem[0], '<form')  !== false)  {
+              $elementContent = $menuItem[0];
+            } else  {
               $elementContent = $this->Html->link($menuItem[0], $menuItem[1], $menuItem[2]);
+            }
           }
           if (!$which && $firstClass !== false) {
               $options['class'] = $firstClass;
