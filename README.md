@@ -1,5 +1,5 @@
 # CakePHP Menu Builder Helper
-A simple menu builder helper for CakePHP 3
+A simple menu builder helper for CakePHP 3.x
 
 ## Setup
 
