@@ -63,7 +63,7 @@ Hint: $entity is for example purpose only
       ), 
       '#', 
       ['escape'=>false]); 
-    ?>//TODO, Technically it is not "correct" but it still works!
+    ?>
 
 
 ## Contact me for any support or help through
