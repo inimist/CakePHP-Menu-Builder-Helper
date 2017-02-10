@@ -1,5 +1,12 @@
 <?php
-/* src/View/Helper/MenuHelper.php (using other helpers) */
+/**
+ * src/View/Helper/MenuHelper.php
+ * Helper for Menu formation and display*
+ * @author     Arvind Kumar
+ * @link       http://www.inimist.com
+ * @copyright  Copyright © 2014 http://www.devarticles.in/
+ * @version 3.0 - Tested OK in Cakephp 3.1.1
+ */
 
 namespace App\View\Helper;
 
@@ -58,7 +65,7 @@ class MenuHelper extends Helper
       return $this;
   }
 
- public function init($area)
+  public function init($area)
   {
       $this->area = $area;
   }
@@ -102,7 +109,8 @@ class MenuHelper extends Helper
     return null;
   }
 
-  function _buildMenuHTML($menuItems, $options, $firstClass, $lastClass) {
+  function _buildMenuHTML($menuItems, $options, $firstClass, $lastClass) 
+  {
     if (!empty($menuItems)) {
       $result = '';
       $menuItemCount = count($menuItems);
